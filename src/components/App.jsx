@@ -1,11 +1,33 @@
 import { Route, Routes } from "react-router-dom";
 
-import { HomePage } from "../pages/Home";
-import { ContactsPage } from "../pages/Contacts/Contacts";
-import { RegisterPage } from "../pages/Register";
-import { LoginPage } from "../pages/Login";
-import { NotFoundPage } from "../pages/PageNotFound";
 import { Layout } from "./Layout/Layout";
+import { lazy } from "react";
+
+const HomePage = lazy(() =>
+  import("../pages/Home").then((module) => ({
+    default: module["HomePage"],
+  }))
+);
+const ContactsPage = lazy(() =>
+  import("../pages/Contacts/Contacts").then((module) => ({
+    default: module["ContactsPage"],
+  }))
+);
+const RegisterPage = lazy(() =>
+  import("../pages/Register").then((module) => ({
+    default: module["RegisterPage"],
+  }))
+);
+const LoginPage = lazy(() =>
+  import("../pages/Login").then((module) => ({
+    default: module["LoginPage"],
+  }))
+);
+const NotFoundPage = lazy(() =>
+  import("../pages/PageNotFound").then((module) => ({
+    default: module["NotFoundPage"],
+  }))
+);
 
 export const App = () => {
   return (
