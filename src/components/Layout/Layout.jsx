@@ -4,7 +4,6 @@ import { Navigation } from "../Navigation/Navigation";
 import { Loader } from "../Loader";
 import css from "./Layout.module.css";
 
-export let isLoggedIn = true;
 export const Layout = ({ children }) => {
   return (
     <div className={css.wrapper}>

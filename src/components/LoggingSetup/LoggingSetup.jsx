@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom";
 import css from "./LoggingSetup.module.css";
 import { setActive } from "../Navigation/Navigation";
-import { isLoggedIn } from "../Layout/Layout";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/selectors";
 
-export const LoggingSetup = () =>
-  !isLoggedIn ? (
+export const LoggingSetup = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  return !isLoggedIn ? (
     <nav className={css.wrapper}>
       <NavLink className={setActive} to="/register">
         Register
@@ -21,3 +23,4 @@ export const LoggingSetup = () =>
       </NavLink>
     </div>
   );
+};

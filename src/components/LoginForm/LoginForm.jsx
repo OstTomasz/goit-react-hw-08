@@ -1,35 +1,29 @@
-import css from "./ContactForm.module.css";
+import css from "./LoginForm.module.css";
 
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/contactsOperations";
-// import { addContact } from "../../redux/contacts/contactsSlice";
+import { logIn } from "../../redux/authentication/operations";
 
 const initialValues = {
-  name: "",
-  phone: "",
+  email: "",
+  password: "",
 };
 
 const Schema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, "Make it longer")
-    .max(50, "Make it shorter")
-    .required("Enter name"),
-  phone: Yup.string()
-    .matches("^([0-9]{3}-){2}[0-9]{2}$", "Correct format: xxx-xxx-xx")
-    .required("Enter phone number"),
+  email: Yup.string().email().required("Enter email"),
+  password: Yup.string().required("Enter password"),
 });
 
-export const ContactForm = () => {
+export const LoginForm = () => {
   const dispatch = useDispatch();
-  const nameFieldId = useId();
-  const phoneFieldId = useId();
+  const emailFieldId = useId();
+  const passwordFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
+    dispatch(logIn(values));
     actions.resetForm();
   };
 
@@ -41,41 +35,41 @@ export const ContactForm = () => {
     >
       <Form className="form">
         <div className={css["form-component"]}>
-          <label className="label" htmlFor={nameFieldId}>
-            Name
+          <label className="label" htmlFor={emailFieldId}>
+            Email
           </label>
           <Field
             className="field"
-            type="text"
-            name="name"
-            id={nameFieldId}
-            placeholder="John Smith"
+            type="email"
+            name="email"
+            id={emailFieldId}
+            placeholder="example@example.com"
           />
           <ErrorMessage
             className={css["error-message"]}
-            name="name"
+            name="email"
             component="span"
           />
         </div>
         <div className={css["form-component"]}>
-          <label className="label" htmlFor={phoneFieldId}>
-            Number
+          <label className="label" htmlFor={passwordFieldId}>
+            Password
           </label>
           <Field
             className="field"
-            type="tel"
-            name="phone"
-            id={phoneFieldId}
-            placeholder="xxx-xxx-xx"
+            type="password"
+            name="password"
+            id={passwordFieldId}
+            placeholder="password"
           />
           <ErrorMessage
             className={css["error-message"]}
-            name="phone"
+            name="password"
             component="span"
           />
         </div>
         <button className={css["submit-btn"]} type="submit">
-          Add contact
+          Log in
         </button>
       </Form>
     </Formik>
