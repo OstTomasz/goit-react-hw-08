@@ -1,4 +1,7 @@
+import { Navigate } from "react-router-dom";
+
+export const isLoggedIn = false;
+
 export const PrivateRoute = ({ component, redirectPath }) => {
-    isLoggedIn = true;
-    return isLoggedIn ? component : <Navigate to={redirectPath}/>
+  return isLoggedIn ? component : <Navigate to={redirectPath} />;
 };

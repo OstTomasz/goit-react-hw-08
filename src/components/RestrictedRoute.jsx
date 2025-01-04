@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
+import { isLoggedIn } from "./PrivateRoute";
 
 export const RestrictedRoute = ({ component, redirectPath }) => {
-  const isLoggedIn = true;
   return isLoggedIn ? <Navigate to={redirectPath} /> : component;
 };
