@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { LoggingSetup } from "../LoggingSetup/LoggingSetup";
 import { Navigation } from "../Navigation/Navigation";
+import { Loader } from "../Loader";
 import css from "./Layout.module.css";
 
 export const Layout = ({ children }) => {
@@ -12,7 +13,7 @@ export const Layout = ({ children }) => {
         <LoggingSetup />
       </header>
       <main className={css.main}>
-        <Suspense fallback={}>{children}</Suspense>
+        <Suspense fallback={<Loader />}>{children}</Suspense>
       </main>
       <footer className={css.footer}>
         <p> 2025 Your private phonebook. All rights reserved &copy; </p>
