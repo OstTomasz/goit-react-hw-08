@@ -1,15 +1,16 @@
 body {
   background-color: rgb(129, 129, 129);
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 10px;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
+  margin: 0;
+}
+h2 {
+  margin: 0;
+}
+p {
   margin: 0;
 }
 

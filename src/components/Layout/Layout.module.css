@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  background-color: rgb(87, 87, 87);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+}
+
+.wrapper {
+  padding-bottom: 15px;
+}
+
+.main {
+  margin-top: 50px;
+  padding-left: 10px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: rgb(87, 87, 87);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 5px;
+}
