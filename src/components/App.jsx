@@ -1,9 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 
 import { Layout } from "./Layout/Layout";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { PrivateRoute } from "./PrivateRoute";
+import { useDispatch, useSelector } from "react-redux";
+import { refreshUser } from "../redux/authentication/authenticationOperations";
+import { selectAuthentication } from "../redux/selectors";
 
 const HomePage = lazy(() =>
   import("../pages/Home").then((module) => ({
@@ -32,6 +35,15 @@ const NotFoundPage = lazy(() =>
 );
 
 export const App = () => {
+  const { isRefreshUser } = useSelector(selectAuthentication);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, []);
+
+  if (isRefreshUser) {
+    return <p>refreshing..</p>;
+  }
   return (
     <Layout>
       <Routes>

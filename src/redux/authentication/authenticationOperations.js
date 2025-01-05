@@ -7,7 +7,7 @@ import {
 } from "../constants";
 
 export const register = createAsyncThunk(
-  "authenticatation/register",
+  "authentication/register",
   async (credentials, thunkApi) => {
     console.log(credentials);
     try {
@@ -21,7 +21,7 @@ export const register = createAsyncThunk(
 );
 
 export const logIn = createAsyncThunk(
-  "authenticatation/logIn",
+  "authentication/logIn",
   async (credentials, thunkApi) => {
     try {
       const response = await axios.post("/users/login", credentials);
@@ -34,11 +34,29 @@ export const logIn = createAsyncThunk(
 );
 
 export const logOut = createAsyncThunk(
-  "authenticatation/logOut",
+  "authentication/logOut",
   async (_, thunkApi) => {
     try {
       await axios.post("users/logout");
       clearAuthenticationHeader();
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const refreshUser = createAsyncThunk(
+  "authentication/refreshUser",
+  async (_, thunkApi) => {
+    try {
+      const persistToken = thunkApi.getState().authentication.token;
+      if (!persistToken) {
+        return thunkApi.rejectWithValue("No token");
+      }
+      setAuthenticationHeader(persistToken);
+
+      const response = await axios.get("/users/current");
+      return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
