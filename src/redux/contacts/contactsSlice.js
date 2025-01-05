@@ -18,14 +18,7 @@ import {
   addContact,
   deleteContact,
 } from "./contactsOperations";
-
-const handlePending = (state) => {
-  state.isLoading = true;
-};
-const handleRejected = (state, actions) => {
-  state.isLoading = false;
-  state.error = actions.payload;
-};
+import { handlePending, handleRejected } from "../constants";
 
 const contactsSlice = createSlice({
   name: "contacts",

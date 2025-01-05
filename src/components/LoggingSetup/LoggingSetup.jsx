@@ -1,11 +1,16 @@
 import { NavLink } from "react-router-dom";
 import css from "./LoggingSetup.module.css";
 import { setActive } from "../Navigation/Navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/selectors";
+import { logOut } from "../../redux/authentication/authenticationOperations";
 
 export const LoggingSetup = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
+  const handleLogOut = () => {
+    dispatch(logOut);
+  };
   return !isLoggedIn ? (
     <nav className={css.wrapper}>
       <NavLink className={setActive} to="/register">
@@ -18,9 +23,7 @@ export const LoggingSetup = () => {
   ) : (
     <div className={css.wrapper}>
       <span>Welcome UserName!</span>
-      <NavLink className={setActive} to="/">
-        Logout
-      </NavLink>
+      <button onClick={handleLogOut}>Logout</button>
     </div>
   );
 };
