@@ -6,6 +6,7 @@ import * as Yup from "yup";
 
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/authentication/authenticationOperations";
+import { NavLink } from "react-router-dom";
 
 const initialValues = {
   email: "",
@@ -73,6 +74,7 @@ export const LoginForm = () => {
           <button className={css["submit-btn"]} type="submit">
             Log in
           </button>
+          <NavLink to="/register">Create account</NavLink>
         </Form>
       </Formik>
     </div>
