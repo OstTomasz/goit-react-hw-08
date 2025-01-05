@@ -1,8 +1,5 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { BASE_URL } from "../constants";
-
-axios.defaults.baseURL = BASE_URL;
 
 export const fetchingContacts = createAsyncThunk(
   `contacts/fetchContacts`,
@@ -23,7 +20,7 @@ export const addContact = createAsyncThunk(
     try {
       const response = await axios.post("/contacts", {
         name: values.name,
-        phone: values.phone,
+        number: values.number,
       });
       const contacts = response.data;
       return contacts;

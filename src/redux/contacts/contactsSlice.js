@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [
-    { name: "First contact", phone: "xxx-xxx-xx", id: "a" },
-    { name: "Second contact", phone: "xxx-xxx-xx", id: "b" },
-    { name: "Third contact", phone: "xxx-xxx-xx", id: "c" },
-    { name: "Fourth contact", phone: "xxx-xxx-xx", id: "d" },
-    { name: "Fifth contact", phone: "xxx-xxx-xx", id: "e" },
-    { name: "Sixth contact", phone: "xxx-xxx-xx", id: "f" },
+    { name: "First contact", number: "xxx-xxx-xx", id: "a" },
+    { name: "Second contact", number: "xxx-xxx-xx", id: "b" },
+    { name: "Third contact", number: "xxx-xxx-xx", id: "c" },
+    { name: "Fourth contact", number: "xxx-xxx-xx", id: "d" },
+    { name: "Fifth contact", number: "xxx-xxx-xx", id: "e" },
+    { name: "Sixth contact", number: "xxx-xxx-xx", id: "f" },
   ],
   isLoading: false,
   error: null,

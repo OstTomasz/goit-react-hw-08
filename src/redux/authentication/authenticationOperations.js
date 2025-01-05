@@ -2,18 +2,29 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 import {
-  BASE_URL2,
   clearAuthenticationHeader,
   setAuthenticationHeader,
 } from "../constants";
 
-axios.defaults.baseURL = BASE_URL2;
+export const register = createAsyncThunk(
+  "authenticatation/register",
+  async (credentials, thunkApi) => {
+    console.log(credentials);
+    try {
+      const response = await axios.post("/users/signup", credentials);
+      setAuthenticationHeader(response.data.token);
+      return response.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const logIn = createAsyncThunk(
   "authenticatation/logIn",
   async (credentials, thunkApi) => {
     try {
-      const response = await axios.post("users/login", credentials);
+      const response = await axios.post("/users/login", credentials);
       setAuthenticationHeader(response.data.token);
       return response.data;
     } catch (error) {

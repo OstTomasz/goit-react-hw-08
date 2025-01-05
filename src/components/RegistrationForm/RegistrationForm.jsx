@@ -1,29 +1,36 @@
-import css from "./LoginForm.module.css";
+import css from "./RegistrationForm.module.css";
 
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 import { useDispatch } from "react-redux";
-import { logIn } from "../../redux/authentication/authenticationOperations";
+import { register } from "../../redux/authentication/authenticationOperations";
 
 const initialValues = {
+  name: "",
   email: "",
   password: "",
 };
 
 const Schema = Yup.object().shape({
+  name: Yup.string()
+    .min(3, "Make it longer")
+    .max(10, "Make it shorter")
+    .required("Enter username"),
   email: Yup.string().email().required("Enter email"),
   password: Yup.string().required("Enter password"),
 });
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
   const dispatch = useDispatch();
+  const nameFieldId = useId();
   const emailFieldId = useId();
   const passwordFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    dispatch(logIn(values));
+    console.log(values);
+    dispatch(register(values));
     actions.resetForm();
   };
 
@@ -35,6 +42,23 @@ export const LoginForm = () => {
         validationSchema={Schema}
       >
         <Form className="form">
+          <div className={css["form-component"]}>
+            <label className="label" htmlFor={nameFieldId}>
+              Username
+            </label>
+            <Field
+              className="field"
+              type="text"
+              name="name"
+              id={nameFieldId}
+              placeholder="Mango123"
+            />
+            <ErrorMessage
+              className={css["error-message"]}
+              name="name"
+              component="span"
+            />
+          </div>
           <div className={css["form-component"]}>
             <label className="label" htmlFor={emailFieldId}>
               Email
@@ -71,7 +95,7 @@ export const LoginForm = () => {
             />
           </div>
           <button className={css["submit-btn"]} type="submit">
-            Log in
+            Create account
           </button>
         </Form>
       </Formik>

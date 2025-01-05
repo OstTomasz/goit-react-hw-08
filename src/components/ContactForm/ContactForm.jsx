@@ -10,7 +10,7 @@ import { addContact } from "../../redux/contacts/contactsOperations";
 
 const initialValues = {
   name: "",
-  phone: "",
+  number: "",
 };
 
 const Schema = Yup.object().shape({
@@ -18,7 +18,7 @@ const Schema = Yup.object().shape({
     .min(3, "Make it longer")
     .max(50, "Make it shorter")
     .required("Enter name"),
-  phone: Yup.string()
+  number: Yup.string()
     .matches("^([0-9]{3}-){2}[0-9]{2}$", "Correct format: xxx-xxx-xx")
     .required("Enter phone number"),
 });
@@ -26,7 +26,7 @@ const Schema = Yup.object().shape({
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const nameFieldId = useId();
-  const phoneFieldId = useId();
+  const numberFieldId = useId();
 
   const handleSubmit = (values, actions) => {
     dispatch(addContact(values));
@@ -58,19 +58,19 @@ export const ContactForm = () => {
           />
         </div>
         <div className={css["form-component"]}>
-          <label className="label" htmlFor={phoneFieldId}>
+          <label className="label" htmlFor={numberFieldId}>
             Number
           </label>
           <Field
             className="field"
             type="tel"
-            name="phone"
-            id={phoneFieldId}
+            name="number"
+            id={numberFieldId}
             placeholder="xxx-xxx-xx"
           />
           <ErrorMessage
             className={css["error-message"]}
-            name="phone"
+            name="number"
             component="span"
           />
         </div>
