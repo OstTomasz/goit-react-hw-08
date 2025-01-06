@@ -6,10 +6,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectContacts, selectInputedFilter } from "../../redux/selectors";
 import { useEffect } from "react";
 import { fetchingContacts } from "../../redux/contacts/contactsOperations";
+// import Fuse from "fuse.js";
 
 export const ContactList = () => {
   const { items, isLoading, error } = useSelector(selectContacts);
-  const filter = useSelector(selectInputedFilter);
+  const filter = useSelector(selectInputedFilter).toLowerCase();
+
+  // const stringifiedItems = JSON.stringify(items).toLowerCase();
+  // const filteredContacts = () => {
+  //   const fuseOptions = {
+  //     keys: ["name", "number"],
+  //   };
+  //   const fuse = new Fuse(stringifiedItems, fuseOptions);
+  //   const searchPattern = filter;
+  //   return fuse.search(searchPattern);
+  // };
+  // console.log(filteredContacts());
+
   const filteredContacts = items.filter(
     (contact) =>
       contact.name.toLowerCase().includes(filter.toLowerCase()) ||
