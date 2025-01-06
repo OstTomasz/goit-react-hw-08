@@ -6,7 +6,7 @@ import {
   register,
 } from "./authenticationOperations";
 
-const initialState = {
+let initialState = {
   isLoggedIn: false,
   isRefreshUser: false,
   token: null,
@@ -25,6 +25,7 @@ const authenticationSlice = createSlice({
       .addCase(register.pending, (state) => {
         state.isLoading = true;
         state.registerError = null;
+        state.logInError = null;
       })
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -39,6 +40,7 @@ const authenticationSlice = createSlice({
       .addCase(logIn.pending, (state) => {
         state.isLoading = true;
         state.logInError = null;
+        state.registerError = null;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -56,6 +58,7 @@ const authenticationSlice = createSlice({
       })
       .addCase(logOut.fulfilled, (state) => {
         state.isLoading = false;
+        state.isLoggedIn = false;
         state.logOutError = false;
         state.token = null;
         state.user = null;
@@ -78,6 +81,8 @@ const authenticationSlice = createSlice({
         state.isRefreshUser = false;
         state.isLoading = false;
         state.refreshError = actions.payload;
+        state.registerError = null;
+        state.logInError = null;
         state.isLoggedIn = false;
         state.token = null;
         state.user = {
