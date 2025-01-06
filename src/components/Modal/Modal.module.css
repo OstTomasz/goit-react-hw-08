@@ -1,0 +1,54 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.header {
+  color: red;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  padding-right: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  min-width: 300px;
+  background-color: white;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.contact-icon {
+  width: 20px;
+}
+
+.buttons {
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  border-color: #5a5a5a;
+  background-color: #ccc;
+}
