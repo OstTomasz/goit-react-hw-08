@@ -10,9 +10,10 @@ import { fetchingContacts } from "../../redux/contacts/contactsOperations";
 export const ContactList = () => {
   const { items, isLoading, error } = useSelector(selectContacts);
   const filter = useSelector(selectInputedFilter);
-
-  const filteredContacts = items.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+  const filteredContacts = items.filter(
+    (contact) =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+      contact.number.includes(filter)
   );
 
   const dispatch = useDispatch();
