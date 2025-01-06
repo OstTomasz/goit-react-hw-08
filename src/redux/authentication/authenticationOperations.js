@@ -62,3 +62,7 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+// export const updateUser = createAsyncThunk(
+//   "authentication/updateUser",
+//   async (updatedUser, thunkApi) => {
