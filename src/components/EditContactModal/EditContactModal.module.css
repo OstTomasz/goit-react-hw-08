@@ -1,3 +1,12 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.header {
+  color: red;
+}
+
 .contact {
   display: flex;
   align-items: center;
@@ -27,6 +36,19 @@
 }
 
 .buttons {
+  margin: 0 auto;
   display: flex;
-  gap: 5px;
+  gap: 10px;
+}
+
+.button {
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  border-color: #5a5a5a;
+  background-color: #ccc;
 }

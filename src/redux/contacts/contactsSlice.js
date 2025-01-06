@@ -17,6 +17,7 @@ import {
   fetchingContacts,
   addContact,
   deleteContact,
+  editContact,
 } from "./contactsOperations";
 import { handlePending, handleRejected } from "../constants";
 
@@ -49,7 +50,17 @@ const contactsSlice = createSlice({
           (contact) => contact.id !== actions.payload.id
         );
       })
-      .addCase(deleteContact.rejected, handleRejected);
+      .addCase(deleteContact.rejected, handleRejected)
+      .addCase(editContact.pending, handlePending)
+      .addCase(editContact.fulfilled, (state, actions) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.items.findIndex((contact) => {
+          contact.id === actions.payload.id;
+        });
+        state.items.splice(index, 1, actions.payload);
+      })
+      .addCase(editContact.rejected, handleRejected);
   },
 });
 

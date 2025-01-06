@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/contactsOperations";
 import toast from "react-hot-toast";
 
-import css from "./Modal.module.css";
+import css from "./DeleteContactModal.module.css";
 
 import { IoMdPerson } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
@@ -22,13 +22,13 @@ const customStyles = {
   },
 };
 
-export const ModalComp = ({ id, name, number }) => {
+export const DeleteContactModal = ({ id, name, number }) => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(deleteContact(id));
-    closeModal;
+    closeModal();
     toast.success(`Successfully deleted contact ${name}!`);
   };
 
@@ -47,7 +47,7 @@ export const ModalComp = ({ id, name, number }) => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel="delete contact"
       >
         <div className={css.modal}>
           <h2 className={css.header}>

@@ -1,4 +1,4 @@
-import css from "./ContactForm.module.css";
+import css from "./AddContactForm.module.css";
 
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -24,7 +24,7 @@ const Schema = Yup.object().shape({
     .required("Enter phone number"),
 });
 
-export const ContactForm = () => {
+export const AddContactForm = () => {
   const { items } = useSelector(selectContacts);
 
   const names = items.map((item) => item.name);
