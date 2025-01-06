@@ -4,9 +4,10 @@ import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "../../redux/contacts/contactsOperations";
-// import { addContact } from "../../redux/contacts/contactsSlice";
+import { selectContacts } from "../../redux/selectors";
+import toast from "react-hot-toast";
 
 const initialValues = {
   name: "",
@@ -24,11 +25,24 @@ const Schema = Yup.object().shape({
 });
 
 export const ContactForm = () => {
+  const { items } = useSelector(selectContacts);
+
+  const names = items.map((item) => item.name);
+  const numbers = items.map((item) => item.number);
+
   const dispatch = useDispatch();
   const nameFieldId = useId();
   const numberFieldId = useId();
 
   const handleSubmit = (values, actions) => {
+    if (names.includes(values.name)) {
+      toast.error("Contact with this name already exists");
+      return;
+    }
+    if (numbers.includes(values.number)) {
+      toast.error("Contact with this number already exists");
+      return;
+    }
     dispatch(addContact(values));
     actions.resetForm();
   };

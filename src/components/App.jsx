@@ -7,6 +7,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "../redux/authentication/authenticationOperations";
 import { selectAuthentication } from "../redux/selectors";
+import { Toaster } from "react-hot-toast";
 
 const HomePage = lazy(() =>
   import("../pages/Home").then((module) => ({
@@ -46,6 +47,10 @@ export const App = () => {
   }
   return (
     <Layout>
+      <div>
+        <Toaster position="top-right" reverseOrder={false} />{" "}
+      </div>
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
