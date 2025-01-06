@@ -44,6 +44,7 @@ export const ContactForm = () => {
       return;
     }
     dispatch(addContact(values));
+    toast.success(`Successfully added contact ${values.name}!`);
     actions.resetForm();
   };
 
