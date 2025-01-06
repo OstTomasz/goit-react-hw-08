@@ -24,9 +24,7 @@ export const LoggingSetup = () => {
     <div className={css.wrapper}>
       <span>Welcome {user.name}!</span>
       <button onClick={handleLogOut}>
-        <NavLink className={setActive} to="/">
-          Logout
-        </NavLink>
+        <NavLink to="/">Logout</NavLink>
       </button>
     </div>
   );
